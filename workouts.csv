@@ -1,0 +1,9 @@
+date,start_time,title,sport_type,duration_minutes,segments
+2026-03-05,18:00,Intervals 6x800,run,60,"[{""type"":""warmup"",""duration"":10},{""type"":""interval"",""reps"":6,""work"":3,""rest"":2}]"
+2026-03-06,07:30,Easy Recovery Ride,bike,45,"[]"
+2026-03-07,09:00,Tempo Run 5km,run,50,"[{""type"":""warmup"",""duration"":10},{""type"":""steady"",""duration"":30},{""type"":""cooldown"",""duration"":10}]"
+2026-03-08,17:00,Easy Run,run,40,"[{""type"":""steady"",""duration"":40}]"
+2026-03-09,18:30,Strength & Core,other,45,"[]"
+2026-03-10,06:45,Long Run 12km,run,80,"[{""type"":""warmup"",""duration"":10},{""type"":""steady"",""duration"":65},{""type"":""cooldown"",""duration"":5}]"
+2026-03-11,18:00,Hill Repeats 8x200,run,55,"[{""type"":""warmup"",""duration"":10},{""type"":""interval"",""reps"":8,""work"":1,""rest"":1}]"
+2026-03-12,07:30,Recovery Run,run,35,"[{""type"":""steady"",""duration"":35}]"
