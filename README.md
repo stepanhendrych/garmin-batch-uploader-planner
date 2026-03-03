@@ -17,7 +17,6 @@ Import your entire training plan (CSV / JSON), authenticate once, and push worko
     - [Example Input File](#example-input-file)
     - [Planned Features](#planned-features)
   - [🇨🇿 Čeština](#-čeština)
-    - [Přehled](#přehled)
     - [Funkce](#funkce)
     - [Instalace](#instalace)
     - [Použití](#použití)
@@ -136,7 +135,7 @@ date,start_time,title,sport_type,duration_minutes,segments
 
 ## 🇨🇿 Čeština
 
-### Přehled
+z### Přehled
 
 **Garmin Batch Uploader & Planner** je Python CLI nástroj, který automatizuje nahrávání tréninků do Garmin Connect.
 Načteš svůj plán z `.csv` nebo `.json` souboru, přihlásíš se jednou a skript ti všechny tréninky nahraje automaticky do knihovny.
