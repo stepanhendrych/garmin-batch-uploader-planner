@@ -13,13 +13,14 @@ Import your entire training plan (CSV / JSON), authenticate once, and push worko
     - [Features](#features)
     - [Installation](#installation)
     - [Usage](#usage)
+    - [Multi-Factor Authentication (MFA / 2FA)](#multi-factor-authentication-mfa--2fa)
     - [Example Input File](#example-input-file)
     - [Planned Features](#planned-features)
   - [🇨🇿 Čeština](#-čeština)
-    - [Přehled](#přehled)
     - [Funkce](#funkce)
     - [Instalace](#instalace)
     - [Použití](#použití)
+    - [Dvoufázové ověření (MFA / 2FA)](#dvoufázové-ověření-mfa--2fa)
     - [Příklad vstupního souboru](#příklad-vstupního-souboru)
     - [Plánované funkce](#plánované-funkce)
 
@@ -29,23 +30,36 @@ Import your entire training plan (CSV / JSON), authenticate once, and push worko
 
 ### Overview
 **Garmin Batch Uploader & Planner** is a Python CLI tool for power users who want to automate Garmin Connect workout management.  
-You can import your training plan from a `.csv` or `.json` file and automatically upload + schedule all workouts at once.
+You can import your training plan from a `.csv` or `.json` file and automatically upload all workouts to your Garmin Connect library.
+
+**Note:** Workout scheduling (assigning workouts to specific calendar dates) must be done manually in the Garmin Connect web/mobile app, as this functionality is not available via API.
 
 Perfect for coaches, developers, or athletes automating their training pipeline.
 
 ### Features
-✅ Bulk creation and scheduling of workouts  
+✅ Bulk creation of workouts in Garmin Connect library  
 ✅ CSV / JSON input support  
 ✅ Login via Garmin Connect (via `python-garminconnect`)  
+✅ **Multi-Factor Authentication (MFA/2FA) support with token persistence**  
 ✅ Modular design — easily extend with new features  
 ✅ CLI-based workflow with logging and error handling  
+✅ Safe `--dry-run` mode for validation before real upload  
+⚠️ Calendar scheduling done manually in Garmin Connect UI (API limitation)  
 
 ### Installation
 ```bash
 git clone https://github.com/stepanhendrych/garmin-batch-uploader-planner
 cd garmin-batch-uploader-planner
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+
+# macOS / Linux
+source .venv/bin/activate
+
 pip install -r requirements.txt
-cp .env.example .env
+copy .env.example .env
 ```
 
 ### Usage
@@ -71,6 +85,37 @@ cp .env.example .env
    python cli.py --file workouts.json
    ```
 
+4. Recommended first run:
+
+   ```bash
+   python cli.py --file workouts.csv --dry-run --verbose
+   ```
+
+### Multi-Factor Authentication (MFA / 2FA)
+
+If your Garmin account has 2FA enabled, the script will automatically prompt for your MFA code during the first login:
+
+```bash
+python cli.py --file workouts.csv
+# Will prompt: "Enter your MFA code: "
+```
+
+After successful authentication, session tokens are saved to `~/.garminconnect` (or the path in `GARMIN_TOKENSTORE`). Future runs will use these tokens automatically — **no password or MFA needed again** (tokens are valid for ~1 year).
+
+**To customize token storage location:**
+
+```env
+GARMIN_TOKENSTORE=C:\Users\YourName\.garmin_tokens
+```
+
+**Security tip:** Ensure restrictive permissions on the token directory:
+
+```bash
+# Linux/macOS
+chmod 700 ~/.garminconnect
+chmod 600 ~/.garminconnect/*
+```
+
 ### Example Input File
 
 ```csv
@@ -82,35 +127,49 @@ date,start_time,title,sport_type,duration_minutes,segments
 ### Planned Features
 
 * 🕓 Official Garmin Training API support
-* 🧠 AI-generated workouts → automatic planning
+* ✅/🔜 Duplicate protection (skip already existing workouts by name/date)
+* 🧠 AI-generated workouts → automtic planning
 * ☁️ Cloud / Docker deployment
 
 ---
 
 ## 🇨🇿 Čeština
 
-### Přehled
+z### Přehled
 
-**Garmin Batch Uploader & Planner** je Python CLI nástroj, který automatizuje nahrávání a plánování tréninků do Garmin Connect.
-Načteš svůj plán z `.csv` nebo `.json` souboru, přihlásíš se jednou a skript ti všechny tréninky nahraje i naplánuje automaticky.
+**Garmin Batch Uploader & Planner** je Python CLI nástroj, který automatizuje nahrávání tréninků do Garmin Connect.
+Načteš svůj plán z `.csv` nebo `.json` souboru, přihlásíš se jednou a skript ti všechny tréninky nahraje automaticky do knihovny.
+
+**Poznámka:** Plánování tréninků (přiřazení na konkrétní datum v kalendáři) se musí udělat ručně v Garmin Connect web/mobilní aplikaci, protože tato funkce není dostupná přes API.
 
 Skvělý pro trenéry, vývojáře nebo sportovce, kteří chtějí mít celý plán pod kontrolou.
 
 ### Funkce
 
-✅ Hromadné nahrávání a plánování tréninků
-✅ Podpora formátů CSV / JSON
-✅ Přihlášení přes Garmin Connect (přes `python-garminconnect`)
-✅ Modulární struktura projektu
-✅ Logování, ošetření chyb, CLI rozhraní
+✅ Hromadné nahrávání tréninků do knihovny Garmin Connect  
+✅ Podpora formátů CSV / JSON  
+✅ Přihlášení přes Garmin Connect (přes `python-garminconnect`)  
+✅ **Podpora dvoufázového ověření (MFA/2FA) s trvalými tokeny**  
+✅ Modulární struktura projektu  
+✅ Logování, ošetření chyb, CLI rozhraní  
+✅ Bezpečný `--dry-run` režim před ostrým nahráním  
+⚠️ Plánování do kalendáře se dělá ručně v Garmin Connect UI (omezení API)
 
 ### Instalace
 
 ```bash
 git clone https://github.com/<tvoje-jmeno>/garmin-batch-uploader-planner.git
 cd garmin-batch-uploader-planner
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+
+# macOS / Linux
+source .venv/bin/activate
+
 pip install -r requirements.txt
-cp .env.example .env
+copy .env.example .env
 ```
 
 ### Použití
@@ -136,6 +195,37 @@ cp .env.example .env
    python cli.py --file workouts.json
    ```
 
+4. Doporučené první spuštění:
+
+   ```bash
+   python cli.py --file workouts.csv --dry-run --verbose
+   ```
+
+### Dvoufázové ověření (MFA / 2FA)
+
+Pokud máš na Garmin účtu zapnuté 2FA, skript tě automaticky vyzve k zadání ověřovacího kódu během prvního přihlášení:
+
+```bash
+python cli.py --file workouts.csv
+# Zobrazí se: "Enter your MFA code: "
+```
+
+Po úspěšné autentizaci se session tokeny uloží do `~/.garminconnect` (nebo cesty v `GARMIN_TOKENSTORE`). Další spuštění už budou používat tyto tokeny automaticky — **nepotřebuješ už heslo ani MFA** (tokeny jsou platné ~1 rok).
+
+**Vlastní umístění tokenů:**
+
+```env
+GARMIN_TOKENSTORE=C:\Users\TvojeJmeno\.garmin_tokens
+```
+
+**Bezpečnostní tip:** Nastav restriktivní oprávnění na adresář s tokeny:
+
+```bash
+# Linux/macOS
+chmod 700 ~/.garminconnect
+chmod 600 ~/.garminconnect/*
+```
+
 ### Příklad vstupního souboru
 
 ```csv
@@ -147,5 +237,6 @@ date,start_time,title,sport_type,duration_minutes,segments
 ### Plánované funkce
 
 * 🕓 Podpora oficiálního Garmin Training API
+* ✅/🔜 Ochrana proti duplicitám (přeskočení již existujících tréninků podle názvu/data)
 * 🧠 AI generování tréninků → automatické plánování
 * ☁️ Nasazení do cloudu / Docker image

@@ -1,0 +1,29 @@
+[
+  {
+    "date": "2026-03-05",
+    "start_time": "18:00",
+    "title": "Intervals 6x800",
+    "sport_type": "run",
+    "duration_minutes": 60,
+    "segments": [
+      {
+        "type": "warmup",
+        "duration": 10
+      },
+      {
+        "type": "interval",
+        "reps": 6,
+        "work": 3,
+        "rest": 2
+      }
+    ]
+  },
+  {
+    "date": "2026-03-06",
+    "start_time": "07:30",
+    "title": "Easy Recovery Ride",
+    "sport_type": "bike",
+    "duration_minutes": 45,
+    "segments": []
+  }
+]
