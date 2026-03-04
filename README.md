@@ -1,15 +1,22 @@
-# 🏃‍♂️ Garmin Batch Uploader & Planner
+# Garmin Batch Uploader & Planner
 
-Automate bulk upload of workouts to Garmin Connect using Python.  
-Import your entire training plan (CSV / JSON), authenticate once, and push workouts directly into your Garmin workout library.
+Bulk upload workouts to Garmin Connect from JSON or CSV using Python CLI.  
+Automate Garmin training plan import, workout creation, and repeatable batch workflow for runners, coaches, and developers.
+
+`garmin connect uploader` `garmin workout import` `garmin connect api python` `bulk upload garmin workouts`
+
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-informational.svg)](#installation)
+[![Input](https://img.shields.io/badge/Input-JSON%20%7C%20CSV-success.svg)](#workout-file-format-json--csv)
 
 ---
 
-## 📑 Table of Contents
-- [🏃‍♂️ Garmin Batch Uploader \& Planner](#️-garmin-batch-uploader--planner)
-  - [📑 Table of Contents](#-table-of-contents)
-  - [🇬🇧 English](#-english)
+## Table of Contents
+- [Garmin Batch Uploader \& Planner](#garmin-batch-uploader--planner)
+  - [Table of Contents](#table-of-contents)
+  - [English](#english)
     - [Overview](#overview)
+    - [Why This Project Exists](#why-this-project-exists)
     - [Features](#features)
     - [Installation](#installation)
     - [Usage](#usage)
@@ -21,8 +28,9 @@ Import your entire training plan (CSV / JSON), authenticate once, and push worko
       - [Repeat / Cycle Groups](#repeat--cycle-groups)
       - [Target Types](#target-types)
       - [CSV Format (Alternative)](#csv-format-alternative)
+    - [FAQ (Search-Friendly)](#faq-search-friendly)
     - [Planned Features](#planned-features)
-  - [🇨🇿 Čeština](#-čeština)
+  - [Čeština](#čeština)
     - [Přehled](#přehled)
     - [Funkce](#funkce)
     - [Instalace](#instalace)
@@ -35,19 +43,34 @@ Import your entire training plan (CSV / JSON), authenticate once, and push worko
       - [Opakující se skupiny / Cykly](#opakující-se-skupiny--cykly)
       - [Typy cílů](#typy-cílů)
       - [CSV formát (Alternativa)](#csv-formát-alternativa)
+    - [FAQ (vyhledávací dotazy)](#faq-vyhledávací-dotazy)
     - [Plánované funkce](#plánované-funkce)
+  - [SEO Notes For Repository Settings](#seo-notes-for-repository-settings)
 
----
-
-## 🇬🇧 English
+## English
 
 ### Overview
-**Garmin Batch Uploader & Planner** is a Python CLI tool for power users who want to automate Garmin Connect workout management.  
-You can import your training plan from a `.csv` or `.json` file and automatically upload all workouts to your Garmin Connect library.
+**Garmin Batch Uploader & Planner** is an open-source Python CLI for importing structured training plans into Garmin Connect.
 
-**Note:** Workout scheduling (assigning workouts to specific calendar dates) must be done manually in the Garmin Connect web/mobile app, as this functionality is not available via API.
+If you are searching for:
+- Python Garmin Connect workout uploader
+- Garmin Connect JSON workout importer
+- bulk Garmin workout creator
+- Garmin interval workout automation
 
-Perfect for coaches, developers, or athletes automating their training pipeline.
+this repository is designed for exactly that workflow.
+
+### Why This Project Exists
+Manually creating workouts in Garmin Connect is repetitive and slow for larger plans.
+This tool lets you define workouts as data (`.json` or `.csv`) and upload them in one run.
+
+Best fit for:
+- Coaches preparing multi-week plans.
+- Athletes migrating workouts from spreadsheets.
+- Developers building automated training pipelines.
+- Anyone who wants repeatable Garmin workout provisioning.
+
+---
 
 ### Features
 ✅ Bulk creation of workouts in Garmin Connect library  
@@ -58,6 +81,8 @@ Perfect for coaches, developers, or athletes automating their training pipeline.
 ✅ CLI-based workflow with logging and error handling  
 ✅ Safe `--dry-run` mode for validation before real upload  
 ⚠️ Calendar scheduling done manually in Garmin Connect UI (API limitation)  
+
+**Note:** Workout scheduling (assigning workouts to specific calendar dates) must be done manually in the Garmin Connect web/mobile app, as this functionality is currently unavailable via API.
 
 ### Installation
 ```bash
@@ -343,6 +368,23 @@ start_time,title,sport_type,duration_minutes,description,segments
 
 **⚠️ Note:** CSV segment encoding is complex. **Use JSON format** for better readability and full feature support.
 
+### FAQ (Search-Friendly)
+
+**Can I bulk upload workouts to Garmin Connect?**  
+Yes. This project uploads multiple workouts to your Garmin Connect workout library from JSON or CSV.
+
+**Can I import interval workouts into Garmin Connect with Python?**  
+Yes. You can define interval, recovery, warmup, cooldown, and repeat blocks and upload them through this CLI.
+
+**Does this support Garmin Connect 2FA / MFA login?**  
+Yes. First login prompts for MFA, then tokens are reused in later runs.
+
+**Can I schedule workouts directly to calendar dates?**  
+Not via public API at the moment. The tool uploads workouts to your library; date assignment is done manually in Garmin Connect UI.
+
+**What file format is best for Garmin workout import?**  
+JSON is recommended. It is easier to read, supports nested repeats, and captures advanced target/end-condition options.
+
 ### Planned Features
 
 * 🕓 Official Garmin Training API support
@@ -352,7 +394,7 @@ start_time,title,sport_type,duration_minutes,description,segments
 
 ---
 
-## 🇨🇿 Čeština
+## Čeština
 
 ### Přehled
 
@@ -590,9 +632,37 @@ start_time,title,sport_type,duration_minutes,segments
 
 **⚠️ Poznámka:** **Použij JSON formát** pro plnou podporu všech funkcí.
 
+### FAQ (vyhledávací dotazy)
+
+**Jak hromadně nahrát tréninky do Garmin Connect?**  
+Použij tento CLI nástroj, připrav `workouts.json` a spusť `python cli.py --file workouts.json`.
+
+**Jde importovat intervalové tréninky do Garmin Connect přes Python?**  
+Ano. Nástroj podporuje `interval`, `recovery`, `warmup`, `cooldown` i opakovací skupiny `repeat`.
+
+**Podporuje to Garmin 2FA / MFA?**  
+Ano. Při prvním přihlášení zadáš MFA kód, další běhy použijí uložené tokeny.
+
+**Jde tréninky rovnou naplánovat do kalendáře Garmin Connect?**  
+Ne přes veřejné API. Nástroj nahraje tréninky do knihovny, datum přiřadíš ručně v Garmin Connect.
+
 ### Plánované funkce
 
 * 🕓 Podpora oficiálního Garmin Training API
 * ✅/🔜 Ochrana proti duplicitám (přeskočení již existujících tréninků podle názvu/data)
 * 🧠 AI generování tréninků → automatické plánování
 * ☁️ Nasazení do cloudu / Docker image
+
+---
+
+## SEO Notes For Repository Settings
+
+For maximum discoverability on GitHub and web search engines, set repository metadata to include:
+- Description: `Python CLI for bulk Garmin Connect workout upload from JSON/CSV with MFA support`
+- Website: link to your docs/demo (if available)
+- Topics: `garmin`, `garmin-connect`, `python`, `cli`, `workout`, `training-plan`, `fitness-automation`, `json`, `csv`, `interval-training`
+
+Recommended naming patterns in future issues/PRs/docs:
+- `garmin workout uploader`
+- `garmin connect importer`
+- `python garmin connect automation`

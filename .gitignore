@@ -4,4 +4,4 @@ __pycache__/
 .env
 .pytest_cache/
 *.log
-example_run_training.json
+workouts.json

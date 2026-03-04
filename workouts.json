@@ -1,211 +1,309 @@
 [
   {
-    "start_time": "2026-03-10T18:00:00Z",
-    "title": "Easy Steady Run - 6km",
+    "start_time": "2026-03-03T17:00:00Z",
+    "title": "Intervalový běh – reaktivace",
     "sport_type": "running",
-    "duration_minutes": 42,
-    "description": "Comfortable steady pace run. Perfect for base building.",
+    "duration_minutes": 30,
+    "description": "Týden 1 – ÚT. Rozběhání po nemoci. 3× (3 min klus + 2 min chůze). Tep pod 150 BPM.",
     "segments": [
-      {
-        "type": "warmup",
-        "duration": 7,
-        "description": "Easy warm-up jog"
-      },
-      {
-        "type": "steady",
-        "duration": 28,
-        "description": "Steady effort - Zone 2 (endurance pace)",
-        "target": {
-          "type": "heart.rate.zone",
-          "zoneNumber": 2
-        }
-      },
-      {
-        "type": "cooldown",
-        "duration": 7,
-        "description": "Easy cool-down jog"
-      }
-    ]
-  },
-  {
-    "start_time": "2026-03-12T18:00:00Z",
-    "title": "Interval Workout - 5x (work + recovery)",
-    "sport_type": "running",
-    "duration_minutes": 45,
-    "description": "Speed work with repeating hard intervals and recovery.",
-    "segments": [
-      {
-        "type": "warmup",
-        "duration": 10,
-        "description": "Gradually build heart rate"
-      },
+      { "type": "warmup", "duration": 5, "description": "Chůze rozehřátí" },
       {
         "type": "repeat",
-        "reps": 5,
-        "description": "5x (hard interval + recovery)",
+        "reps": 3,
+        "description": "3× (3 min klus zóna 2 + 2 min chůze)",
         "segments": [
           {
             "type": "interval",
-            "work": 2,
-            "description": "Hard 2min at Zone 4",
-            "target": {
-              "type": "heart.rate.zone",
-              "zoneNumber": 4
-            }
+            "duration": 3,
+            "description": "Klus zóna 2 – max 150 BPM",
+            "target": { "type": "heart.rate.zone", "zoneNumber": 2 }
           },
           {
             "type": "recovery",
             "rest": 2,
-            "description": "Easy 2min recovery"
+            "description": "Chůze – zotavení"
           }
         ]
       },
-      {
-        "type": "cooldown",
-        "duration": 5
-      }
+      { "type": "cooldown", "duration": 5, "description": "Chůze vychladnutí" }
     ]
   },
   {
-    "start_time": "2026-03-15T07:00:00Z",
-    "title": "Distance-Based Workout",
+    "start_time": "2026-03-05T17:00:00Z",
+    "title": "Easy Run – první nepřerušovaný klus",
     "sport_type": "running",
-    "duration_minutes": 50,
-    "description": "Intervals based on distance instead of time.",
+    "duration_minutes": 25,
+    "description": "Týden 1 – ČT. 20 min kontinuální běh v zóně 2. Tep 140–155 BPM. Pokud tep přes 155 – přejdi na chůzi.",
     "segments": [
+      { "type": "warmup", "duration": 5, "description": "Chůze rozehřátí" },
       {
-        "type": "warmup",
-        "duration": 10
+        "type": "steady",
+        "duration": 20,
+        "description": "Easy klus – zóna 2, 140–155 BPM",
+        "target": { "type": "heart.rate.zone", "zoneNumber": 2 }
       },
-      {
-        "type": "interval",
-        "description": "400m hard sprint",
-        "end_condition": {
-          "type": "distance",
-          "value": 0.4,
-          "unit": "km"
-        }
-      },
-      {
-        "type": "recovery",
-        "description": "200m easy jog",
-        "end_condition": {
-          "type": "distance",
-          "value": 0.2,
-          "unit": "km"
-        }
-      },
-      {
-        "type": "cooldown",
-        "duration": 25
-      }
+      { "type": "cooldown", "duration": 5, "description": "Chůze vychladnutí" }
     ]
   },
   {
-    "start_time": "2026-03-18T18:00:00Z",
-    "title": "HR Recovery-Based Run",
+    "start_time": "2026-03-07T09:00:00Z",
+    "title": "Long Easy Run – aerobní základ",
     "sport_type": "running",
-    "duration_minutes": 40,
-    "description": "Recovery jog until HR recovers to zone 1.",
+    "duration_minutes": 38,
+    "description": "Týden 1 – SO. Nejdelší výběh tohoto týdne. 25 min klusu v zóně 2. Tempo není důležité.",
     "segments": [
-      {
-        "type": "warmup",
-        "duration": 8
-      },
-      {
-        "type": "interval",
-        "description": "3min all-out effort",
-        "duration": 3,
-        "target": {
-          "type": "heart.rate.zone",
-          "zoneNumber": 5
-        }
-      },
-      {
-        "type": "recovery",
-        "description": "Easy jog - continue until HR drops below 120 bpm",
-        "end_condition": {
-          "type": "heart.rate",
-          "value": 120,
-          "operator": "lt",
-          "unit": "bpm"
-        }
-      },
-      {
-        "type": "cooldown",
-        "duration": 10
-      }
-    ]
-  },
-  {
-    "start_time": "2026-03-20T17:00:00Z",
-    "title": "Advanced Circuit - Calories & LAP",
-    "sport_type": "running",
-    "duration_minutes": 55,
-    "description": "Complex circuit with calorie targets and manual lap controls.",
-    "segments": [
-      {
-        "type": "warmup",
-        "duration": 8
-      },
-      {
-        "type": "repeat",
-        "reps": 3,
-        "description": "Circuit: burn calories + manual lap",
-        "segments": [
-          {
-            "type": "interval",
-            "description": "Run hard until 80 calories burned",
-            "end_condition": {
-              "type": "calories",
-              "value": 80
-            }
-          },
-          {
-            "type": "recovery",
-            "description": "Easy jog - press LAP when ready",
-            "end_condition": {
-              "type": "lap.button",
-              "value": 1
-            }
-          }
-        ]
-      },
-      {
-        "type": "other",
-        "duration": 10,
-        "description": "Cool down & stretching",
-        "target": {
-          "type": "heart.rate.zone",
-          "zoneNumber": 1
-        }
-      }
-    ]
-  },
-  {
-    "start_time": "2026-03-22T06:00:00Z",
-    "title": "Recovery Run - Easy Zone 1",
-    "sport_type": "running",
-    "duration_minutes": 35,
-    "description": "Very easy recovery with heart rate zone target.",
-    "segments": [
-      {
-        "type": "warmup",
-        "duration": 5
-      },
+      { "type": "warmup", "duration": 8, "description": "Chůze rozehřátí" },
       {
         "type": "steady",
         "duration": 25,
-        "description": "Zone 1 - conversational pace",
-        "target": {
-          "type": "heart.rate.zone",
-          "zoneNumber": 1
-        }
+        "description": "Pomalý klus – zóna 2, 140–150 BPM",
+        "target": { "type": "heart.rate.zone", "zoneNumber": 2 }
+      },
+      { "type": "cooldown", "duration": 5, "description": "Chůze vychladnutí" }
+    ]
+  },
+  {
+    "start_time": "2026-03-10T17:00:00Z",
+    "title": "Interval Workout – 4× 4 min",
+    "sport_type": "running",
+    "duration_minutes": 32,
+    "description": "Týden 2 – ÚT. Rychlostní stimul. 4× 4 min @5:30–5:45/km + 90 s chůze. Tep v úsecích max 170 BPM.",
+    "segments": [
+      { "type": "warmup", "duration": 5, "description": "Rozklusání @6:30/km" },
+      {
+        "type": "repeat",
+        "reps": 4,
+        "description": "4× (4 min tempo + 90 s chůze)",
+        "segments": [
+          {
+            "type": "interval",
+            "duration": 4,
+            "description": "Tempo úsek – zóna 3/4, max 170 BPM",
+            "target": { "type": "heart.rate.zone", "zoneNumber": 3 }
+          },
+          {
+            "type": "recovery",
+            "rest": 2,
+            "description": "Chůze – 90 s zotavení"
+          }
+        ]
+      },
+      { "type": "cooldown", "duration": 5, "description": "Vyklusání" }
+    ]
+  },
+  {
+    "start_time": "2026-03-12T17:00:00Z",
+    "title": "Tempo Run – 10 min závodní tempo",
+    "sport_type": "running",
+    "duration_minutes": 25,
+    "description": "Týden 2 – ČT. 10 min @5:10–5:20/km. Tep 165–175 BPM. Klíčový trénink – zapiš si pocit.",
+    "segments": [
+      { "type": "warmup", "duration": 5, "description": "Easy rozehřátí" },
+      {
+        "type": "interval",
+        "duration": 10,
+        "description": "Tempo – zóna 4, 165–175 BPM",
+        "target": { "type": "heart.rate.zone", "zoneNumber": 4 }
+      },
+      { "type": "cooldown", "duration": 10, "description": "Easy vyklusání" }
+    ]
+  },
+  {
+    "start_time": "2026-03-14T09:00:00Z",
+    "title": "Long Run – 30 min zóna 2",
+    "sport_type": "running",
+    "duration_minutes": 45,
+    "description": "Týden 2 – SO. Prodloužení aerobní báze. 30 min klusu @6:00–6:30/km. Tep 145–155 BPM.",
+    "segments": [
+      { "type": "warmup", "duration": 10, "description": "Chůze rozehřátí" },
+      {
+        "type": "steady",
+        "duration": 30,
+        "description": "Pomalý klus – zóna 2, 145–155 BPM",
+        "target": { "type": "heart.rate.zone", "zoneNumber": 2 }
+      },
+      { "type": "cooldown", "duration": 5, "description": "Chůze vychladnutí" }
+    ]
+  },
+  {
+    "start_time": "2026-03-17T17:00:00Z",
+    "title": "Interval Workout – 6× 3 min rychleji",
+    "sport_type": "running",
+    "duration_minutes": 33,
+    "description": "Týden 3 – ÚT. 6× 3 min @5:15–5:25/km + 60 s chůze. Tep v úsecích 168–178 BPM.",
+    "segments": [
+      { "type": "warmup", "duration": 5, "description": "Easy rozklusání" },
+      {
+        "type": "repeat",
+        "reps": 6,
+        "description": "6× (3 min tempo + 60 s chůze)",
+        "segments": [
+          {
+            "type": "interval",
+            "duration": 3,
+            "description": "Tempo – zóna 4, 168–178 BPM",
+            "target": { "type": "heart.rate.zone", "zoneNumber": 4 }
+          },
+          {
+            "type": "recovery",
+            "rest": 1,
+            "description": "Chůze 60 s"
+          }
+        ]
+      },
+      { "type": "cooldown", "duration": 5, "description": "Vyklusání" }
+    ]
+  },
+  {
+    "start_time": "2026-03-19T17:00:00Z",
+    "title": "Tempo Run – 15 min závodní tempo",
+    "sport_type": "running",
+    "duration_minutes": 25,
+    "description": "Týden 3 – ČT. 15 min @5:00–5:10/km. Tep 170–178 BPM. Nejtěžší trénink tohoto týdne.",
+    "segments": [
+      { "type": "warmup", "duration": 5, "description": "Easy rozehřátí" },
+      {
+        "type": "interval",
+        "duration": 15,
+        "description": "Tempo – zóna 4, 170–178 BPM",
+        "target": { "type": "heart.rate.zone", "zoneNumber": 4 }
+      },
+      { "type": "cooldown", "duration": 5, "description": "Easy vyklusání" }
+    ]
+  },
+  {
+    "start_time": "2026-03-21T09:00:00Z",
+    "title": "Fartlek – 35 min střídavé tempo",
+    "sport_type": "running",
+    "duration_minutes": 45,
+    "description": "Týden 3 – SO. 7× (3 min @5:30/km + 2 min @6:30/km). Aerobně-anaerobní přechod. Průměrný tep 155–165 BPM.",
+    "segments": [
+      { "type": "warmup", "duration": 5, "description": "Chůze + pomalý klus" },
+      {
+        "type": "repeat",
+        "reps": 7,
+        "description": "7× (3 min rychle + 2 min pomalu)",
+        "segments": [
+          {
+            "type": "interval",
+            "duration": 3,
+            "description": "Rychlý úsek – zóna 3/4",
+            "target": { "type": "heart.rate.zone", "zoneNumber": 4 }
+          },
+          {
+            "type": "recovery",
+            "rest": 2,
+            "description": "Easy klus – zóna 2"
+          }
+        ]
+      },
+      { "type": "cooldown", "duration": 5, "description": "Chůze vychladnutí" }
+    ]
+  },
+  {
+    "start_time": "2026-03-24T17:00:00Z",
+    "title": "Race Pace Intervals – 5× 2 min",
+    "sport_type": "running",
+    "duration_minutes": 30,
+    "description": "Týden 4 – ÚT. 5× 2 min @4:50–5:00/km + 90 s klus. Tep v úsecích 175–183 BPM. Závodní tempo 3 km.",
+    "segments": [
+      { "type": "warmup", "duration": 5, "description": "Easy rozklusání" },
+      {
+        "type": "repeat",
+        "reps": 5,
+        "description": "5× (2 min race pace + 90 s easy klus)",
+        "segments": [
+          {
+            "type": "interval",
+            "duration": 2,
+            "description": "Závodní tempo – zóna 4/5, 175–183 BPM",
+            "target": { "type": "heart.rate.zone", "zoneNumber": 4 }
+          },
+          {
+            "type": "recovery",
+            "rest": 2,
+            "description": "Easy klus – zóna 2"
+          }
+        ]
+      },
+      { "type": "cooldown", "duration": 5, "description": "Vyklusání" }
+    ]
+  },
+  {
+    "start_time": "2026-03-26T17:00:00Z",
+    "title": "Simulace závodu – 3 km na čas",
+    "sport_type": "running",
+    "duration_minutes": 25,
+    "description": "Týden 4 – ČT. KLÍČOVÝ TRÉNINK. 1 km rozehřátí → 3 km @3:45–3:50/km (závodní tempo!) → 1 km vychladnutí. Zapiš přesný čas 3 km!",
+    "segments": [
+      {
+        "type": "warmup",
+        "end_condition": { "type": "distance", "value": 1.0, "unit": "km" },
+        "description": "1 km easy rozehřátí"
+      },
+      {
+        "type": "interval",
+        "end_condition": { "type": "distance", "value": 3.0, "unit": "km" },
+        "description": "3 km závodní tempo – zóna 4/5",
+        "target": { "type": "heart.rate.zone", "zoneNumber": 4 }
       },
       {
         "type": "cooldown",
-        "duration": 5
+        "end_condition": { "type": "distance", "value": 1.0, "unit": "km" },
+        "description": "1 km easy vychladnutí"
       }
+    ]
+  },
+  {
+    "start_time": "2026-03-28T09:00:00Z",
+    "title": "Easy Run + Strides – aktivace před testem",
+    "sport_type": "running",
+    "duration_minutes": 35,
+    "description": "Týden 4 – SO. 20 min easy + 4× 20 s strides. Udržení formy, probuzení rychlostních svalů.",
+    "segments": [
+      { "type": "warmup", "duration": 5, "description": "Chůze rozehřátí" },
+      {
+        "type": "steady",
+        "duration": 20,
+        "description": "Easy klus – zóna 2, 145–155 BPM",
+        "target": { "type": "heart.rate.zone", "zoneNumber": 2 }
+      },
+      {
+        "type": "repeat",
+        "reps": 4,
+        "description": "4× (20 s stride @4:30/km + 60 s chůze)",
+        "segments": [
+          {
+            "type": "interval",
+            "duration": 1,
+            "description": "Stride – kontrolovaný sprint",
+            "target": { "type": "heart.rate.zone", "zoneNumber": 4 }
+          },
+          {
+            "type": "recovery",
+            "rest": 1,
+            "description": "Chůze – 60 s"
+          }
+        ]
+      },
+      { "type": "cooldown", "duration": 3, "description": "Chůze vychladnutí" }
+    ]
+  },
+  {
+    "start_time": "2026-03-31T09:00:00Z",
+    "title": "TEST – 3 km na čas (závod)",
+    "sport_type": "running",
+    "duration_minutes": 30,
+    "description": "Týden 5 – ÚT. 🎯 FINÁLNÍ TEST. Rozehřátí 10 min + 3× strides → 3 km NA ČAS → vyklusání 10 min. CÍL: pod 11:30 (tempo 3:50/km).",
+    "segments": [
+      { "type": "warmup", "duration": 10, "description": "Easy rozehřátí + 3× krátký stride" },
+      {
+        "type": "interval",
+        "end_condition": { "type": "distance", "value": 3.0, "unit": "km" },
+        "description": "🎯 3 km NA ČAS – naplno! Cíl: sub 11:30",
+        "target": { "type": "heart.rate.zone", "zoneNumber": 5 }
+      },
+      { "type": "cooldown", "duration": 10, "description": "Vyklusání – gratuluju! 🎉" }
     ]
   }
 ]
