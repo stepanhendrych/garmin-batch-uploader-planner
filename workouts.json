@@ -1,10 +1,77 @@
 [
   {
-    "date": "2026-03-05",
-    "start_time": "18:00",
-    "title": "Intervals 6x800",
-    "sport_type": "run",
-    "duration_minutes": 60,
+    "start_time": "2026-03-10T18:00:00Z",
+    "title": "Easy Steady Run - 6km",
+    "sport_type": "running",
+    "duration_minutes": 42,
+    "description": "Comfortable steady pace run. Perfect for base building.",
+    "segments": [
+      {
+        "type": "warmup",
+        "duration": 7,
+        "description": "Easy warm-up jog"
+      },
+      {
+        "type": "steady",
+        "duration": 28,
+        "description": "Steady effort - Zone 2 (endurance pace)",
+        "target": {
+          "type": "heart.rate.zone",
+          "zoneNumber": 2
+        }
+      },
+      {
+        "type": "cooldown",
+        "duration": 7,
+        "description": "Easy cool-down jog"
+      }
+    ]
+  },
+  {
+    "start_time": "2026-03-12T18:00:00Z",
+    "title": "Interval Workout - 5x (work + recovery)",
+    "sport_type": "running",
+    "duration_minutes": 45,
+    "description": "Speed work with repeating hard intervals and recovery.",
+    "segments": [
+      {
+        "type": "warmup",
+        "duration": 10,
+        "description": "Gradually build heart rate"
+      },
+      {
+        "type": "repeat",
+        "reps": 5,
+        "description": "5x (hard interval + recovery)",
+        "segments": [
+          {
+            "type": "interval",
+            "work": 2,
+            "description": "Hard 2min at Zone 4",
+            "target": {
+              "type": "heart.rate.zone",
+              "zoneNumber": 4
+            }
+          },
+          {
+            "type": "recovery",
+            "rest": 2,
+            "description": "Easy 2min recovery"
+          }
+        ]
+      },
+      {
+        "type": "cooldown",
+        "duration": 5
+      }
+    ]
+  },
+  {
+    "start_time": "2026-03-15T07:00:00Z",
+    "title": "Distance-Based Workout",
+    "sport_type": "running",
+    "duration_minutes": 50,
+    "description": "Intervals based on distance instead of time.",
     "segments": [
       {
         "type": "warmup",
@@ -12,18 +79,133 @@
       },
       {
         "type": "interval",
-        "reps": 6,
-        "work": 3,
-        "rest": 2
+        "description": "400m hard sprint",
+        "end_condition": {
+          "type": "distance",
+          "value": 0.4,
+          "unit": "km"
+        }
+      },
+      {
+        "type": "recovery",
+        "description": "200m easy jog",
+        "end_condition": {
+          "type": "distance",
+          "value": 0.2,
+          "unit": "km"
+        }
+      },
+      {
+        "type": "cooldown",
+        "duration": 25
       }
     ]
   },
   {
-    "date": "2026-03-06",
-    "start_time": "07:30",
-    "title": "Easy Recovery Ride",
-    "sport_type": "bike",
-    "duration_minutes": 45,
-    "segments": []
+    "start_time": "2026-03-18T18:00:00Z",
+    "title": "HR Recovery-Based Run",
+    "sport_type": "running",
+    "duration_minutes": 40,
+    "description": "Recovery jog until HR recovers to zone 1.",
+    "segments": [
+      {
+        "type": "warmup",
+        "duration": 8
+      },
+      {
+        "type": "interval",
+        "description": "3min all-out effort",
+        "duration": 3,
+        "target": {
+          "type": "heart.rate.zone",
+          "zoneNumber": 5
+        }
+      },
+      {
+        "type": "recovery",
+        "description": "Easy jog - continue until HR drops below 120 bpm",
+        "end_condition": {
+          "type": "heart.rate",
+          "value": 120,
+          "operator": "lt",
+          "unit": "bpm"
+        }
+      },
+      {
+        "type": "cooldown",
+        "duration": 10
+      }
+    ]
+  },
+  {
+    "start_time": "2026-03-20T17:00:00Z",
+    "title": "Advanced Circuit - Calories & LAP",
+    "sport_type": "running",
+    "duration_minutes": 55,
+    "description": "Complex circuit with calorie targets and manual lap controls.",
+    "segments": [
+      {
+        "type": "warmup",
+        "duration": 8
+      },
+      {
+        "type": "repeat",
+        "reps": 3,
+        "description": "Circuit: burn calories + manual lap",
+        "segments": [
+          {
+            "type": "interval",
+            "description": "Run hard until 80 calories burned",
+            "end_condition": {
+              "type": "calories",
+              "value": 80
+            }
+          },
+          {
+            "type": "recovery",
+            "description": "Easy jog - press LAP when ready",
+            "end_condition": {
+              "type": "lap.button",
+              "value": 1
+            }
+          }
+        ]
+      },
+      {
+        "type": "other",
+        "duration": 10,
+        "description": "Cool down & stretching",
+        "target": {
+          "type": "heart.rate.zone",
+          "zoneNumber": 1
+        }
+      }
+    ]
+  },
+  {
+    "start_time": "2026-03-22T06:00:00Z",
+    "title": "Recovery Run - Easy Zone 1",
+    "sport_type": "running",
+    "duration_minutes": 35,
+    "description": "Very easy recovery with heart rate zone target.",
+    "segments": [
+      {
+        "type": "warmup",
+        "duration": 5
+      },
+      {
+        "type": "steady",
+        "duration": 25,
+        "description": "Zone 1 - conversational pace",
+        "target": {
+          "type": "heart.rate.zone",
+          "zoneNumber": 1
+        }
+      },
+      {
+        "type": "cooldown",
+        "duration": 5
+      }
+    ]
   }
 ]

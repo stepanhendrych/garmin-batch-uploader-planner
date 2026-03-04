@@ -44,7 +44,27 @@ def _load_json(path: Path) -> list[Workout]:
         if not isinstance(row, dict):
             raise ValueError(f"JSON item {index} is not an object.")
         normalized = dict(row)
+
+        if "date" not in normalized and "start_time" in normalized:
+            try:
+                normalized["date"] = normalized["start_time"].split("T")[0]
+            except Exception:
+                normalized["date"] = None
+
+        if "start_time" in normalized and "T" in normalized["start_time"]:
+            try:
+                t_part = normalized["start_time"].split("T")[1].split(":")
+                normalized["start_time"] = f"{t_part[0]}:{t_part[1]}"
+            except Exception:
+                raise ValueError(
+                    f"Invalid ISO start_time format in item {index}: {normalized['start_time']}"
+                )
+
         normalized["segments"] = _parse_segments(normalized.get("segments", []))
+
+        if "duration_minutes" not in normalized and "duration" in normalized:
+            normalized["duration_minutes"] = normalized["duration"]
+
         try:
             workouts.append(Workout.from_raw(normalized))
         except ValueError as exc:

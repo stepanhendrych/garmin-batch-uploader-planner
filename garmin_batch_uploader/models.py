@@ -47,3 +47,11 @@ class Workout:
             duration_minutes=duration_minutes,
             segments=segments,
         )
+
+    @property
+    def formatted_title(self) -> str:
+        """Return a filename-friendly title in the format: "title - date (DD. MM. YYYY)".
+
+        Example: "Morning Run - 03. 03. 2026"
+        """
+        return f"{self.title} - {self.date.strftime('%d. %m. %Y')}"
