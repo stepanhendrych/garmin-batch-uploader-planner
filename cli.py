@@ -16,7 +16,7 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--file",
-        required=True,
+        required=False,
         help="Path to workouts input file (.csv or .json)",
     )
     parser.add_argument(
@@ -28,6 +28,11 @@ def _build_parser() -> argparse.ArgumentParser:
         "--verbose",
         action="store_true",
         help="Enable debug logging.",
+    )
+    parser.add_argument(
+        "--delete-sport-type",
+        action="store_true",
+        help="Delete all workouts of a specific sport type from Garmin Connect.",
     )
     return parser
 
@@ -42,6 +47,23 @@ def main() -> int:
     )
 
     try:
+        # Handle delete sport type mode
+        if args.delete_sport_type:
+            settings = load_settings()
+            client = GarminUploaderClient(
+                user=settings.garmin_user,
+                password=settings.garmin_pass,
+                tokenstore=settings.tokenstore,
+                dry_run=False,
+            )
+            planner = GarminBatchPlanner(client)
+            return planner.delete_workouts_by_sport_type()
+
+        # Handle normal upload mode
+        if not args.file:
+            logging.error("--file is required unless using --delete-sport-type")
+            return 1
+
         workouts = load_workouts(args.file)
         if not workouts:
             logging.warning("No workouts found in input file.")

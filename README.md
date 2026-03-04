@@ -77,6 +77,7 @@ Best fit for:
 ✅ CSV / JSON input support  
 ✅ Login via Garmin Connect (via `python-garminconnect`)  
 ✅ **Multi-Factor Authentication (MFA/2FA) support with token persistence**  
+✅ Delete workouts by sport type with interactive menu  
 ✅ Modular design — easily extend with new features  
 ✅ CLI-based workflow with logging and error handling  
 ✅ Safe `--dry-run` mode for validation before real upload  
@@ -113,7 +114,6 @@ copy .env.example .env
 
 3. Run the script:
 
-
    ```bash
    python cli.py --file workouts.json
    ```
@@ -123,6 +123,21 @@ copy .env.example .env
    ```bash
    python cli.py --file workouts.json --dry-run --verbose
    ```
+
+### Delete Workouts by Sport Type
+
+Interactively delete all workouts of a specific sport type (e.g., all running workouts):
+
+```bash
+python cli.py --delete-sport-type
+```
+
+The interactive menu will:
+1. Display all available sport types with workout counts
+2. Let you select which sport type to manage
+3. Offer two options:
+   - **Delete ALL** workouts of that sport type (with confirmation)
+   - **Delete selectively** — review and confirm each workout individually
 
 ### Multi-Factor Authentication (MFA / 2FA)
 
@@ -411,6 +426,7 @@ Skvělý pro trenéry, vývojáře nebo sportovce, kteří chtějí mít celý p
 ✅ Podpora formátů CSV / JSON  
 ✅ Přihlášení přes Garmin Connect (přes `python-garminconnect`)  
 ✅ **Podpora dvoufázového ověření (MFA/2FA) s trvalými tokeny**  
+✅ Mazání tréninků podle typu sportu (s interaktivní nabídkou)  
 ✅ Modulární struktura projektu  
 ✅ Logování, ošetření chyb, CLI rozhraní  
 ✅ Bezpečný `--dry-run` režim před ostrým nahráním  
@@ -456,7 +472,20 @@ copy .env.example .env
    python cli.py --file workouts.json --dry-run --verbose
    ```
 
+### Mazání tréninků podle typu sportu
 
+Interaktivně smažeš všechny tréninky určitého typu (např. všechny běhy):
+
+```bash
+python cli.py --delete-sport-type
+```
+
+Interaktivní menu ti umožní:
+1. Zobrazit všechny dostupné typy sportu s počtem tréninků
+2. Vybrat, který typ sportu chceš spravovat
+3. Zvolit jednu ze dvou možností:
+   - **Smazat VŠECHNY** tréninky tohoto typu (s potvrzením)
+   - **Smazat selektivně** — zkontrolovat a potvrdit každý trénink zvlášť
 
 ### Dvoufázové ověření (MFA / 2FA)
 

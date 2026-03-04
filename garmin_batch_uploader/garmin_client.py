@@ -386,3 +386,48 @@ class GarminUploaderClient:
                 _normalize_step(step)
         
         return payload
+
+    def get_available_workouts(self) -> list[dict[str, Any]]:
+        """Fetch list of available workouts from Garmin Connect."""
+        if self._dry_run:
+            LOGGER.info("[DRY-RUN] Would fetch available workouts from Garmin Connect.")
+            return []
+
+        if self._client is None:
+            raise RuntimeError("Not authenticated. Call login() first.")
+
+        LOGGER.info("Fetching workouts from Garmin Connect...")
+        try:
+            workouts = self._client.get_workouts()
+            LOGGER.info("Successfully fetched %s workouts.", len(workouts))
+            return workouts
+        except Exception as exc:
+            LOGGER.error("Failed to fetch workouts: %s", exc)
+            raise
+
+    def delete_workout(self, workout_id: int) -> bool:
+        """Delete a single workout by ID.
+        
+        Returns True if successful, False otherwise.
+        """
+        if self._dry_run:
+            LOGGER.info("[DRY-RUN] Would delete workout with ID: %s", workout_id)
+            return True
+
+        if self._client is None:
+            raise RuntimeError("Not authenticated. Call login() first.")
+
+        try:
+            LOGGER.info("Deleting workout with ID: %s", workout_id)
+            path = f"/workout-service/workout/{workout_id}"
+            response = self._client.garth.request("DELETE", "connectapi", path)
+            
+            if response.status_code in (200, 204):
+                LOGGER.info("Successfully deleted workout with ID: %s", workout_id)
+                return True
+            else:
+                LOGGER.error("Failed to delete workout with ID %s: HTTP %s", workout_id, response.status_code)
+                return False
+        except Exception as exc:
+            LOGGER.error("Failed to delete workout with ID %s: %s", workout_id, exc)
+            return False
