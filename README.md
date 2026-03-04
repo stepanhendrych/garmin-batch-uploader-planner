@@ -88,11 +88,6 @@ copy .env.example .env
 
 3. Run the script:
 
-   ```bash
-  python cli.py --file workouts.json
-   ```
-
-   or, for JSON input:
 
    ```bash
    python cli.py --file workouts.json
@@ -101,7 +96,7 @@ copy .env.example .env
 4. Recommended first run:
 
    ```bash
-  python cli.py --file workouts.json --dry-run --verbose
+   python cli.py --file workouts.json --dry-run --verbose
    ```
 
 ### Multi-Factor Authentication (MFA / 2FA)
@@ -410,20 +405,16 @@ copy .env.example .env
 3. Spusť skript:
 
    ```bash
-  python cli.py --file workouts.json
-   ```
-
-   nebo pro JSON vstup:
-
-   ```bash
    python cli.py --file workouts.json
    ```
 
 4. Doporučené první spuštění:
 
    ```bash
-    python cli.py --file workouts.json --dry-run --verbose
+   python cli.py --file workouts.json --dry-run --verbose
    ```
+
+
 
 ### Dvoufázové ověření (MFA / 2FA)
 
