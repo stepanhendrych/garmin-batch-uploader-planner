@@ -50,8 +50,8 @@ class Workout:
 
     @property
     def formatted_title(self) -> str:
-        """Return a filename-friendly title in the format: "title - date (DD. MM. YYYY)".
+        """Return a filename-friendly title in the format: "date (DD. MM. YYYY) - title".
 
-        Example: "Morning Run - 03. 03. 2026"
+        Example: "03. 03. 2026 - Morning Run"
         """
-        return f"{self.title} - {self.date.strftime('%d. %m. %Y')}"
+        return f"{self.date.strftime('%d. %m. %Y')} - {self.title}"
