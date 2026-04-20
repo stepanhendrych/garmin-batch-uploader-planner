@@ -681,17 +681,3 @@ Ne přes veřejné API. Nástroj nahraje tréninky do knihovny, datum přiřadí
 * ✅/🔜 Ochrana proti duplicitám (přeskočení již existujících tréninků podle názvu/data)
 * 🧠 AI generování tréninků → automatické plánování
 * ☁️ Nasazení do cloudu / Docker image
-
----
-
-## SEO Notes For Repository Settings
-
-For maximum discoverability on GitHub and web search engines, set repository metadata to include:
-- Description: `Python CLI for bulk Garmin Connect workout upload from JSON/CSV with MFA support`
-- Website: link to your docs/demo (if available)
-- Topics: `garmin`, `garmin-connect`, `python`, `cli`, `workout`, `training-plan`, `fitness-automation`, `json`, `csv`, `interval-training`
-
-Recommended naming patterns in future issues/PRs/docs:
-- `garmin workout uploader`
-- `garmin connect importer`
-- `python garmin connect automation`
